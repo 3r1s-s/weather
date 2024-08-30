@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mètèo</title>
+    <meta name="apple-mobile-web-app-title" content="Mètèo">
+    <meta name="description" content="Eris Weather">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="types.css">
+    <link rel="icon" href="assets/images/icon-web.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="assets/images/icon.png">
+    <meta name="theme-color" content="rgb(82, 143, 228)">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body class="">
+    <div class="modal-outer">
+        <div class="modal purple">
+            <div class="modal-inner">
+                
+            </div>
+            <div class="modal-options">
+            </div>
+        </div>
+    </div>
+    <div class="body-inner">
+        <div class="sidebar-buttons">
+            <div class="sidebar-button" onclick="toggleSidebar()" id="menu">
+                <svg width="20" height="20" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="2" width="19" height="3" rx="1.5" fill="currentColor"/>
+                    <rect y="8" width="19" height="3" rx="1.5" fill="currentColor"/>
+                    <rect y="14" width="19" height="3" rx="1.5" fill="currentColor"/>
+                </svg>            
+            </div>
+            <div class="sidebar-button" onclick="" id="refresh">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 8.4899V0.500829L17.3497 3.13847C15.2507 1.05541 12.8156 0 10.0437 0C4.50701 0 0.00180172 4.48864 0 10.0013C0.00090086 15.5131 4.507 19.9982 10.0446 20C13.8967 20 18.4848 18.0047 19.8063 12.4042L19.8315 12.2949H16.9218L16.9019 12.3559C15.9308 15.2605 13.1742 17.2127 10.0437 17.2127C9.0911 17.2149 8.14752 17.0292 7.26753 16.6665C6.38754 16.3037 5.58859 15.771 4.9169 15.0992C4.24168 14.4315 3.70635 13.6372 3.34188 12.7623C2.97741 11.8874 2.79104 10.9493 2.79357 10.0022C2.79357 6.02607 6.04657 2.79084 10.0455 2.79084C11.9094 2.79084 13.3228 3.31049 15.3822 5.09609L11.9661 8.49079L20 8.4899Z" fill="currentColor"/>
+                </svg>                              
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-outer">
+                <div class="sidebar-inner">
+                    <div class="searchbar button">
+                        <input class="searchbar-input" id="search-input" type="text" placeholder="search" onkeydown="if (event.keyCode == 13) searchStations(document.getElementById('search-input').value)"></input>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="searchStations(document.getElementById('search-input').value)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.868 12.4264C15.6268 14.6675 12.288 15.1418 9.58217 13.8492L4.14215 19.2894C3.19457 20.2369 1.65825 20.2369 0.710681 19.2894C-0.236894 18.3417 -0.236894 16.8055 0.710681 15.8578L6.15077 10.4178C4.85821 7.71204 5.33248 4.37315 7.5736 2.13204C10.4164 -0.710679 15.0253 -0.710679 17.868 2.13204C20.7107 4.97474 20.7107 9.58369 17.868 12.4264ZM9.28934 10.7107C11.1845 12.6058 14.2571 12.6058 16.1523 10.7107C18.0474 8.81554 18.0474 5.74291 16.1523 3.84776C14.2571 1.95263 11.1845 1.95263 9.28934 3.84776C7.39419 5.74291 7.39419 8.81554 9.28934 10.7107Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="sidebar-main">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page">
+            <div class="hero">
+                <span class="location" id="loc">####</span>
+                <div class="hero-in">
+                    <span class="title"><span class="degrees" id="temperature">--</span><span class="symbol large">°</span></span>
+                    <svg class="badge" width="235" height="235" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="currentColor" d="M127.991 0.0119829C121.342 -0.1197 115.556 3.7216 110.452 7.46895C106.509 10.3864 102.007 13.2982 96.8442 12.9844C89.4252 12.6717 82.0475 9.80198 74.6024 11.5352C68.3069 12.7945 63.8607 17.9257 60.9535 23.2163C57.984 28.3193 55.5735 34.4744 49.8055 37.1667C43.0279 40.3333 34.9451 40.5168 28.866 45.171C23.412 49.0653 21.3842 55.8674 21.0863 62.1892C20.6297 67.9212 21.2639 74.3719 17.3514 79.1559C12.7515 84.7318 5.85542 88.3038 2.32493 94.767C-0.912254 100.184 -0.438569 106.928 1.90625 112.576C3.95121 118.233 7.74739 123.773 6.87329 130.028C5.67789 137.109 0.856197 143.118 0.159385 150.338C-0.701806 156.284 2.01117 162.185 6.26189 166.335C10.2706 170.669 15.8861 173.632 18.7578 178.913C21.4751 184.77 20.1476 191.405 21.3583 197.572C22.1805 203.449 25.4806 209.129 30.8993 212.029C36.9717 215.676 44.4475 215.826 50.6304 219.19C56.1194 222.465 58.1379 228.807 61.4253 233.86C64.5782 239.233 69.7405 243.983 76.255 244.761C83.5301 245.895 90.5595 242.83 97.7958 242.928C103.959 243.184 108.742 247.538 113.633 250.698C118.212 253.849 123.611 256.464 129.367 255.93C136.279 255.449 141.933 251.108 147.314 247.259C150.894 244.618 155.217 242.552 159.813 243C167.254 243.531 174.771 246.305 182.214 244.223C188.647 242.583 192.828 236.991 195.729 231.499C198.402 226.589 201.077 221.003 206.582 218.607C213.126 215.673 220.815 215.418 226.723 211.084C232.129 207.421 234.434 200.898 234.84 194.715C235.441 188.801 234.51 182.151 238.406 177.102C242.998 171.353 250.061 167.759 253.657 161.189C256.911 155.776 256.397 149.037 254.093 143.382C251.999 137.611 248.066 131.917 249.192 125.52C250.602 118.313 255.564 112.119 255.933 104.648C256.524 98.4509 253.144 92.6552 248.644 88.5484C244.591 84.4838 239.034 81.4713 236.775 75.9862C234.535 69.711 235.939 62.8742 234.256 56.4803C233.05 50.6382 228.973 45.4807 223.398 43.0293C217.437 40.0213 210.341 39.8836 204.638 36.3365C199.105 32.4854 197.309 25.6815 193.508 20.4751C190.276 15.5431 185.047 11.5439 178.912 11.1089C171.794 10.2683 164.949 13.2163 157.867 13.0193C152.008 12.6633 147.431 8.56468 142.754 5.54815C138.407 2.6005 133.466 -0.206601 127.991 0.0119829Z"/>
+                    </svg>                
+                </div>
+                <span class="type" id="description">####</span>
+                <span class="ext">
+                    <div>
+                        <span class="high" id="high-temp">--</span>
+
+                    </div>
+                    <div>
+                        <span class="low" id="low-temp">--</span>
+                    </div>
+                </span>
+            </div>
+            <div class="forecast">
+                <div class="forecast-inner" id="forecast">
+
+                </div>
+            </div>
+            <div class="tiles">
+                <div class="tile" id="barometricPressure">
+                    <span class="tile-name">Pressure</span>
+                    <span class="tile-value">--</span>
+                    <span class="tile-unit">inHg</span>
+                </div>
+                <div class="tile" id="windSpeed">
+                    <span class="tile-name">Wind Speed</span>
+                    <span class="tile-value">--</span>
+                    <span class="tile-unit">--</span>
+                    <svg class="compass" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M44.3144 6.83224C45.9637 1.72259 54.0363 1.72258 55.6856 6.83223L77.7512 75.1937C79.3189 80.0507 73.1441 83.9367 68.5843 80.9626L51.7407 69.9767C50.7029 69.2999 49.2971 69.2999 48.2593 69.9767L31.4157 80.9626C26.8559 83.9367 20.6811 80.0507 22.2488 75.1937L44.3144 6.83224Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="tile" id="visibility">
+                    <span class="tile-name">Visibility</span>
+                    <span class="tile-value">--</span>
+                    <span class="tile-unit">--</span>
+                </div>
+                <div class="tile" id="heatIndex">
+                    <span class="tile-name">Heat Index</span>
+                    <span class="tile-value">--</span>
+                    <span class="tile-unit">--</span>
+                </div>
+                <div class="tile" id="dewpoint">
+                    <span class="tile-name">Dewpoint</span>
+                    <span class="tile-value">--</span>
+                    <span class="tile-unit">--</span>
+                </div>
+                <div class="tile" id="relativeHumidity">
+                    <span class="tile-name">Humidity</span>
+                    <span class="tile-value">--</span>
+                    <span class="tile-unit">Rh</span>
+                </div>
+                <div class="tile-wide" id="moon">
+                    <div class="info-half">
+                        <span class="tile-name">Moon Phase</span>
+                        <span class="tile-value">--</span>
+                        <span class="tile-unit"></span>
+                    </div>
+                    <div class="icon-half">
+                        <div id="moon-icon" class="moon-phase"></div>
+                    </div>
+                </div>
+                <div class="tile" id="precipitationLast6Hours">
+                    <span class="tile-name">Precipitation</span>
+                    <span class="tile-value">--</span>
+                    <span class="tile-unit">in</span>
+                </div>
+                <div id="chanceOfRain" class="tile">
+                    <div class="tile-title">Chance of Rain</div>
+                    <div class="tile-value">--</div>
+                </div>
+                <div class="tile" id="sunriseTime">
+                    <span class="tile-name">Sunrise</span>
+                    <span class="tile-value">--</span>
+                </div>
+                <div class="tile" id="sunsetTime">
+                    <div class="tile-title">Sunset</div>
+                    <div class="tile-value">--</div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="button">
+                    <span>Report an issue</span>
+                    <svg class="link" width="20" height="20" viewBox="0 0 24 24">
+                        <polygon fill="currentColor" fill-rule="nonzero" points="13 20 11 20 11 8 5.5 13.5 4.08 12.08 12 4.16 19.92 12.08 18.5 13.5 13 8"></polygon>
+                    </svg>
+                </div>
+                <div class="footer-inner">
+                    <span class="thanks">Weather information is provided by <a href="https://weather.gov">weather.gov</a>.</span>
+                    <span class="thanks small" id="location-full">####</span>
+                </div>
+            </div>
+        </div>
+        <div class="settings-button" onclick="toggleSettings()" id="settings">
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.644169 15.2044C0.751639 15.4175 0.866389 15.627 0.988219 15.8323C1.34503 16.445 1.76284 17.0223 2.23048 17.545C2.3967 17.7307 2.65856 17.7968 2.89375 17.7126L5.25826 16.8621C5.96645 16.608 6.74841 17.07 6.87902 17.8018L7.32018 20.2764C7.36418 20.5227 7.55119 20.7167 7.79454 20.7688C8.86201 20.9976 9.95753 21.057 11.0418 20.9452C11.427 20.9061 11.8095 20.8457 12.1863 20.7643C12.375 20.7232 12.5303 20.5969 12.6121 20.4275C12.6441 20.37 12.6671 20.3068 12.6794 20.2397L13.132 17.7739C13.1978 17.4162 13.4191 17.1252 13.7102 16.9498C13.7478 16.9275 13.7867 16.9072 13.8264 16.8889C14.1041 16.7654 14.426 16.7408 14.7301 16.8496L17.0889 17.6938C17.2068 17.7362 17.3318 17.7406 17.4482 17.7107C17.5805 17.6872 17.7044 17.6208 17.7983 17.5172C18.2857 16.9783 18.7189 16.3833 19.0875 15.7497C19.4503 15.1137 19.748 14.4403 19.9703 13.7471C20.0128 13.6142 20.0083 13.4742 19.9629 13.3481C19.9307 13.2315 19.8646 13.1245 19.7685 13.043L17.8596 11.4179C17.6114 11.2067 17.4714 10.912 17.4409 10.6065C17.4371 10.563 17.4355 10.5194 17.4361 10.4758C17.444 10.1379 17.5847 9.80337 17.8591 9.56905L19.7638 7.94348C19.8146 7.90007 19.857 7.84958 19.8904 7.7944C19.9978 7.63842 20.0299 7.43844 19.9706 7.25291C19.8534 6.88733 19.7151 6.52704 19.5572 6.17466C19.1114 5.17572 18.5115 4.2528 17.7787 3.43934C17.612 3.25429 17.3509 3.18886 17.1161 3.27382L14.7569 4.12827C14.0592 4.38082 13.2679 3.93321 13.1344 3.19155L12.6871 0.714256C12.6423 0.468053 12.4542 0.273849 12.2106 0.22246C11.5182 0.0764882 10.803 0.00250031 10.088 0.000608251C9.88769 -0.0015584 9.68739 0.002064 9.48735 0.0114648C8.92415 0.0369819 8.36389 0.107332 7.81778 0.222459C7.78135 0.230146 7.74615 0.241028 7.71249 0.2548C7.5098 0.328781 7.35888 0.505679 7.31996 0.723547L6.8788 3.19817C6.81394 3.56157 6.58834 3.85866 6.29097 4.03446C5.98991 4.2061 5.61923 4.25412 5.27153 4.12827L2.91237 3.27382C2.70694 3.1995 2.48138 3.24016 2.31657 3.37545C2.2857 3.39886 2.25676 3.42543 2.23026 3.45505C1.81793 3.91588 1.44433 4.4192 1.11714 4.95183C1.05788 5.04799 1.00019 5.14513 0.944072 5.24319C0.878302 5.35619 0.814661 5.4704 0.753186 5.58577C0.464267 6.12611 0.222113 6.69081 0.0338354 7.26739C0.0213426 7.30567 0.0127871 7.34455 0.00802709 7.38352C-0.0257478 7.59364 0.0518458 7.809 0.218337 7.94974L2.13633 9.56992C2.41146 9.80242 2.55518 10.1364 2.56469 10.4743C2.56917 10.8294 2.42529 11.1857 2.13611 11.4301L0.218115 13.0503C0.0484589 13.1937 -0.0289685 13.4145 0.00982709 13.6284C0.0147983 13.6634 0.0228404 13.6982 0.0340542 13.7326C0.198098 14.235 0.403035 14.7283 0.644169 15.2044ZM10 14.5C12.2091 14.5 14 12.7091 14 10.5C14 8.29086 12.2091 6.5 10 6.5C7.79086 6.5 6 8.29086 6 10.5C6 12.7091 7.79086 14.5 10 14.5Z" fill="currentColor"/>
+            </svg>                                        
+        </div>
+        <div class="background">
+            <svg viewBox="0 0 1440 150" fill="none" xmlns="http://www.w3.org/2000/svg" class="wave">
+                <path class="wavein" fill="currentColor" d="M0 53.5478V150H1440V0C1351.64 0.244902 1263.28 23.1508 1174.92 46.0566C1143.28 54.259 1111.64 62.4613 1080 69.6232C960 96.7851 840 106.763 720 112.528C600 117.849 480 117.849 360 107.096C252.696 97.8759 145.393 79.1712 80.9884 67.9445C73.368 66.6162 66.3482 65.3925 60 64.3017L0 53.5478Z"/>
+            </svg>
+        </div>    
+    </div>  
+</body>
+<script src="script.js">
+</script>
+</html>

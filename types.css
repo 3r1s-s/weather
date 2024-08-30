@@ -1,0 +1,283 @@
+:root {
+    --back: rgb(82, 143, 228);
+    --text: #fff;
+    --back-text: rgb(214, 235, 255);
+    --accent: rgb(51, 107, 185);
+    --accent-text: rgb(20, 47, 88);
+    --foreground: rgb(77, 202, 154);
+    --tile-text: var(--text);
+    --red: #ee4d3c;
+
+    --blue-100: #C2C2FF;
+    --blue-200: #898bff;
+    --blue-300: #6062de;
+    --blue-500: #5b5eff;
+    --blue-600: #4143d6;
+    --blue-700: #22249f;
+    --blue-800: #22248d;
+    --blue-900: #23276a;
+    --blue-1000: #0a0b1e;
+
+    --purple-600: #4d4e72;
+    --purple-700: #434562;
+    --purple-800: #363750;
+
+    --grey-100: #aaa;
+    --grey-500: #303030;
+    --grey-600: #212121;
+}
+
+.clear {
+    --back: rgb(82, 143, 228);
+    --text: #fff;
+    --back-text: rgb(228, 252, 255);
+    --accent: rgb(255, 252, 92);
+    --accent-text: rgb(77, 76, 25);
+}
+
+.partly-cloudy {
+    --back: rgb(82, 143, 228);
+    --text: #fff;
+    --back-text: rgb(228, 252, 255);
+    --accent: rgb(255, 252, 92);
+    --accent-text: rgb(77, 76, 25);
+}
+
+.cloudy {
+    --back: rgb(141, 170, 189);
+    --text: #fff;
+    --back-text: rgb(255, 255, 255);
+    --accent: rgb(120, 144, 161);
+    --accent-text: rgb(215, 229, 238);
+    --foreground: rgb(133, 206, 179);
+}
+
+.rain {
+    --back: #4b5769;
+    --text: #fff;
+    --back-text: rgb(255, 255, 255);
+    --accent: #7689a7;
+    --accent-text: #c9dcf3;
+    --foreground: rgb(117, 143, 144);
+}
+
+.storm {
+    --back: #262b33;
+    --text: #fff;
+    --back-text: rgb(255, 255, 255);
+    --accent: #465782;
+    --accent-text: #859cc5;
+    --foreground: #526468;
+}
+
+.dust {
+    --back: rgb(65, 55, 45);          /* Dusty brown background */
+    --text: rgb(220, 210, 200);       /* Light dusty beige text */
+    --back-text: rgb(160, 150, 140);  /* Mid dusty grey for text on darker backgrounds */
+    --accent: rgb(110, 95, 80);       /* Muted brown-grey for accents */
+    --accent-text: rgb(200, 185, 170);/* Light dusty accent text */
+    --foreground: rgb(90, 80, 70);    /* Foreground elements with an earthy tint */
+    
+    --red: rgb(200, 85, 70);          /* Dusty red for a muted, natural look */
+    
+    --blue-100: rgb(140, 125, 110);   /* Light dusty brown */
+    --blue-200: rgb(120, 105, 90);    /* Slightly darker dusty brown */
+    --blue-300: rgb(100, 85, 70);     /* Medium dusty brown */
+    --blue-500: rgb(80, 70, 60);      /* Dark dusty brown */
+    --blue-600: rgb(70, 60, 50);      /* Deeper earthy brown */
+    --blue-700: rgb(60, 50, 40);      /* Very dark brown */
+    --blue-800: rgb(50, 40, 30);      /* Near-black brown */
+    --blue-900: rgb(40, 30, 20);      /* Almost black brown */
+    --blue-1000: rgb(35, 25, 15);     /* Deepest, dusty brown */
+}
+
+.fog {
+    --back: rgb(235, 240, 245);       /* Light foggy grey background */
+    --text: rgb(45, 50, 55);          /* Dark grey text, like shadows in the fog */
+    --back-text: rgb(120, 125, 130);  /* Mid cool grey for text on lighter backgrounds */
+    --accent: rgb(185, 190, 195);     /* Soft grey-blue for accents */
+    --accent-text: rgb(75, 80, 85);   /* Darker foggy grey accent text */
+    --foreground: rgb(210, 215, 220); /* Foreground elements with a light foggy tint */
+    
+    --red: rgb(200, 100, 95);         /* Soft muted red for a gentle contrast */
+    
+    --blue-100: rgb(190, 195, 200);   /* Light foggy grey */
+    --blue-200: rgb(170, 175, 180);   /* Slightly darker foggy grey */
+    --blue-300: rgb(150, 155, 160);   /* Soft, muted grey */
+    --blue-500: rgb(130, 135, 140);   /* Cool grey */
+    --blue-600: rgb(110, 115, 120);   /* Darker grey */
+    --blue-700: rgb(95, 100, 105);    /* Deep cool grey */
+    --blue-800: rgb(80, 85, 90);      /* Darker, soft grey */
+    --blue-900: rgb(65, 70, 75);      /* Soft, shadowy grey */
+    --blue-1000: rgb(55, 60, 65);     /* Deep, muted grey */    
+}
+
+.mono {
+    --back: rgb(0, 0, 0);
+    --text: #fff;
+    --back-text: #efefef;
+    --accent: rgb(255, 255, 255);
+    --accent-text: rgb(0, 0, 0);
+    --foreground: #000000;
+    --blue-200: #999999;
+    --blue-500: #fff;
+    --blue-600: #aaa;
+    --blue-800: #000;
+    --tile-text: #000;
+    --red: #fff;
+}
+
+.modal.purple {
+    --settings-text: #e8e1f2;
+    --settings-100: #020102;
+    --settings-200: #070609;
+    --settings-300: #0e0d13;
+    --settings-400: #14121b;
+    --settings-500: #191825;
+    --settings-600: #221e2e;
+}
+
+.modal.orange {
+    --settings-text: #4d1600;
+    --settings-100: #b67441;
+    --settings-200: #ca8a59;
+    --settings-300: #73c5ff;
+    --settings-400: #f3d1b7;
+    --settings-500: #d7a076;
+    --settings-600: #e4b692;
+}
+
+.modal.blue {
+    --settings-text: #002d4d;
+    --settings-100: #3f88bc;
+    --settings-200: #57a2d8;
+    --settings-300: #73c5ff;
+    --settings-400: #8fd0ff;
+    --settings-500: #58a1d5;
+    --settings-600: #68afe3;
+}
+
+:root, .clear.dark, .partly-cloudy.dark {
+    --back: rgb(44, 55, 71);
+    --text: #dff0ff;
+    --back-text: rgb(228, 252, 255);
+    --accent: #456087;
+    --accent-text: rgb(168, 204, 255);
+
+    --red: #ee4d3c;
+
+    --blue-100: rgb(170, 200, 242);
+    --blue-200: rgb(119, 155, 205);
+    --blue-300: rgb(95, 129, 176);
+    --blue-500: rgb(69, 96, 135);
+    --blue-600: rgb(51, 67, 91);
+    --blue-700: rgb(51, 63, 80);
+    --blue-800: rgb(34, 46, 62);
+    --blue-900: rgb(22, 32, 47);
+    --blue-1000: rgb(18, 29, 44);
+}
+
+.cloudy.dark {
+    --back: rgb(35, 38, 43);
+    --text: rgb(210, 214, 221);
+    --back-text: rgb(120, 124, 131);
+    --accent: rgb(75, 79, 85);
+    --accent-text: rgb(190, 195, 202);
+    --foreground: rgb(60, 64, 71);
+    
+    --red: rgb(238, 77, 60);
+    
+    --blue-100: rgb(75, 79, 85);
+    --blue-200: rgb(66, 70, 76);
+    --blue-300: rgb(57, 61, 67);
+    --blue-500: rgb(47, 51, 57);
+    --blue-600: rgb(40, 43, 48);
+    --blue-700: rgb(35, 38, 43);
+    --blue-800: rgb(30, 32, 37);
+    --blue-900: rgb(25, 27, 31);
+    --blue-1000: rgb(20, 22, 26);    
+}
+
+.rain.dark {
+    --back: rgb(30, 40, 50);
+    --text: rgb(210, 220, 230);
+    --back-text: rgb(150, 160, 170);
+    --accent: rgb(60, 80, 100);
+    --accent-text: rgb(190, 205, 220);
+    --foreground: rgb(36, 47, 58);
+    
+    --red: rgb(170, 86, 77);
+    
+    --blue-100: rgb(85, 105, 125);
+    --blue-200: rgb(75, 95, 115);
+    --blue-300: rgb(65, 85, 105);
+    --blue-500: rgb(55, 75, 95);
+    --blue-600: rgb(45, 65, 85);
+    --blue-700: rgb(40, 60, 80);
+    --blue-800: rgb(35, 55, 75);
+    --blue-900: rgb(30, 50, 70);
+    --blue-1000: rgb(25, 45, 65);
+}
+
+.storm.dark {
+    --back: rgb(20, 25, 35);
+    --text: rgb(200, 210, 220);
+    --back-text: rgb(100, 110, 120);
+    --accent: rgb(50, 60, 75);
+    --accent-text: rgb(180, 190, 200);
+    --foreground: rgb(40, 50, 65);
+    
+    --red: rgb(215, 40, 30);
+    
+    --blue-100: rgb(70, 80, 100);
+    --blue-200: rgb(60, 70, 90);
+    --blue-300: rgb(50, 60, 80);
+    --blue-500: rgb(40, 50, 70);
+    --blue-600: rgb(30, 40, 60);
+    --blue-700: rgb(25, 35, 55);
+    --blue-800: rgb(20, 30, 50);
+    --blue-900: rgb(15, 25, 45);
+    --blue-1000: rgb(10, 20, 40);
+}
+
+.dust.dark {
+    --back: rgb(45, 40, 35);
+    --text: rgb(200, 190, 180);
+    --back-text: rgb(130, 120, 110);
+    --accent: rgb(85, 75, 65);
+    --accent-text: rgb(180, 170, 160);
+    --foreground: rgb(65, 55, 50);
+    
+    --red: rgb(180, 70, 55);
+    
+    --blue-100: rgb(100, 90, 80);
+    --blue-200: rgb(85, 75, 65);
+    --blue-300: rgb(70, 60, 55);
+    --blue-500: rgb(55, 50, 45);
+    --blue-600: rgb(50, 45, 40);
+    --blue-700: rgb(45, 40, 35);
+    --blue-800: rgb(40, 35, 30);
+    --blue-900: rgb(35, 30, 25);
+    --blue-1000: rgb(30, 25, 20);
+}
+
+.fog.dark {
+    --back: rgb(45, 50, 55);
+    --text: rgb(220, 225, 230);
+    --back-text: rgb(150, 155, 160);
+    --accent: rgb(85, 90, 95);
+    --accent-text: rgb(200, 205, 210);
+    --foreground: rgb(65, 70, 75);
+    
+    --red: rgb(180, 80, 75);
+    
+    --blue-100: rgb(130, 135, 140);
+    --blue-200: rgb(110, 115, 120);
+    --blue-300: rgb(90, 95, 100);
+    --blue-500: rgb(70, 75, 80);
+    --blue-600: rgb(55, 60, 65);
+    --blue-700: rgb(50, 55, 60);
+    --blue-800: rgb(45, 50, 55);
+    --blue-900: rgb(40, 45, 50);
+    --blue-1000: rgb(35, 40, 45);
+}
