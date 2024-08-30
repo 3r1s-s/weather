@@ -157,7 +157,7 @@
     --settings-600: #68afe3;
 }
 
-:root, .clear.dark, .partly-cloudy.dark {
+.dark, .clear.dark, .partly-cloudy.dark {
     --back: rgb(44, 55, 71);
     --text: #dff0ff;
     --back-text: rgb(228, 252, 255);
