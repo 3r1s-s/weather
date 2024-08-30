@@ -8,9 +8,9 @@ if (!localStorage.getItem("w-settings")) {
     localStorage.setItem("w-settings", JSON.stringify(settings));
 }
 
-if (localStorage.getItem("w-settings").theme === "1") {
+if (localStorage.getItem("w-settings").theme === 1) {
     document.body.classList.add("dark");
-} else if (localStorage.getItem("w-settings").theme === "2") {
+} else if (localStorage.getItem("w-settings").theme === 2) {
     document.body.classList.add("mono");
 }
 
@@ -167,6 +167,12 @@ async function getWeather(station) {
 }
 
 function placeholders(station) {
+    if (JSON.parse(localStorage.getItem("w-settings")).theme === 1) {
+        document.body.classList.add("dark");
+    } else if (JSON.parse(localStorage.getItem("w-settings")).theme === 2) {
+        document.body.classList.add("mono");
+    }
+
     document.getElementById("temperature").innerText = '--';
     document.getElementById("loc").innerText = station;
     document.getElementById("location-full").innerText = '####';
