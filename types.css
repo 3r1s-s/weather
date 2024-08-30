@@ -71,45 +71,45 @@
 }
 
 .dust {
-    --back: rgb(65, 55, 45);          /* Dusty brown background */
-    --text: rgb(220, 210, 200);       /* Light dusty beige text */
-    --back-text: rgb(160, 150, 140);  /* Mid dusty grey for text on darker backgrounds */
-    --accent: rgb(110, 95, 80);       /* Muted brown-grey for accents */
-    --accent-text: rgb(200, 185, 170);/* Light dusty accent text */
-    --foreground: rgb(90, 80, 70);    /* Foreground elements with an earthy tint */
+    --back: rgb(65, 55, 45);
+    --text: rgb(220, 210, 200);
+    --back-text: rgb(160, 150, 140);
+    --accent: rgb(110, 95, 80);
+    --accent-text: rgb(200, 185, 170);
+    --foreground: rgb(90, 80, 70);
     
-    --red: rgb(200, 85, 70);          /* Dusty red for a muted, natural look */
+    --red: rgb(200, 85, 70);
     
-    --blue-100: rgb(140, 125, 110);   /* Light dusty brown */
-    --blue-200: rgb(120, 105, 90);    /* Slightly darker dusty brown */
-    --blue-300: rgb(100, 85, 70);     /* Medium dusty brown */
-    --blue-500: rgb(80, 70, 60);      /* Dark dusty brown */
-    --blue-600: rgb(70, 60, 50);      /* Deeper earthy brown */
-    --blue-700: rgb(60, 50, 40);      /* Very dark brown */
-    --blue-800: rgb(50, 40, 30);      /* Near-black brown */
-    --blue-900: rgb(40, 30, 20);      /* Almost black brown */
-    --blue-1000: rgb(35, 25, 15);     /* Deepest, dusty brown */
+    --blue-100: rgb(140, 125, 110);
+    --blue-200: rgb(120, 105, 90);
+    --blue-300: rgb(100, 85, 70);
+    --blue-500: rgb(80, 70, 60);
+    --blue-600: rgb(70, 60, 50);
+    --blue-700: rgb(60, 50, 40);
+    --blue-800: rgb(50, 40, 30);
+    --blue-900: rgb(40, 30, 20);
+    --blue-1000: rgb(35, 25, 15);
 }
 
 .fog {
-    --back: rgb(235, 240, 245);       /* Light foggy grey background */
-    --text: rgb(45, 50, 55);          /* Dark grey text, like shadows in the fog */
-    --back-text: rgb(120, 125, 130);  /* Mid cool grey for text on lighter backgrounds */
-    --accent: rgb(185, 190, 195);     /* Soft grey-blue for accents */
-    --accent-text: rgb(75, 80, 85);   /* Darker foggy grey accent text */
-    --foreground: rgb(210, 215, 220); /* Foreground elements with a light foggy tint */
+    --back: rgb(235, 240, 245);
+    --text: rgb(45, 50, 55);
+    --back-text: rgb(120, 125, 130);
+    --accent: rgb(185, 190, 195);
+    --accent-text: rgb(75, 80, 85);
+    --foreground: rgb(210, 215, 220);
     
-    --red: rgb(200, 100, 95);         /* Soft muted red for a gentle contrast */
+    --red: rgb(200, 100, 95);
     
-    --blue-100: rgb(190, 195, 200);   /* Light foggy grey */
-    --blue-200: rgb(170, 175, 180);   /* Slightly darker foggy grey */
-    --blue-300: rgb(150, 155, 160);   /* Soft, muted grey */
-    --blue-500: rgb(130, 135, 140);   /* Cool grey */
-    --blue-600: rgb(110, 115, 120);   /* Darker grey */
-    --blue-700: rgb(95, 100, 105);    /* Deep cool grey */
-    --blue-800: rgb(80, 85, 90);      /* Darker, soft grey */
-    --blue-900: rgb(65, 70, 75);      /* Soft, shadowy grey */
-    --blue-1000: rgb(55, 60, 65);     /* Deep, muted grey */    
+    --blue-100: rgb(190, 195, 200);
+    --blue-200: rgb(170, 175, 180);
+    --blue-300: rgb(150, 155, 160);
+    --blue-500: rgb(130, 135, 140);
+    --blue-600: rgb(110, 115, 120);
+    --blue-700: rgb(95, 100, 105);
+    --blue-800: rgb(80, 85, 90);
+    --blue-900: rgb(65, 70, 75);
+    --blue-1000: rgb(55, 60, 65);    
 }
 
 .mono {
