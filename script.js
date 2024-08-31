@@ -364,27 +364,47 @@ function toggleSidebar() {
     }
 }
 
-function toggleSettings() {
+function toggleSettings(override) {
     const modalOuter = document.querySelector(".modal-outer");
     const bodyInner = document.querySelector(".body-inner");
+    if (override === 0 || override === 0) {
+        if (override === 1) {
+            bodyInner.classList.remove("fade");
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
+            modalOuter.classList.remove("open");
     
-    if (modalOuter.classList.contains("open")) {
-        bodyInner.classList.remove("fade");
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
-        modalOuter.classList.remove("open");
-
-        setTimeout(() => {
-            modalOuter.style.visibility = "hidden";
-            document.querySelector(".modal-inner").innerHTML = ``;
-            document.querySelector(".modal-options").innerHTML = ``;
-        }, 500);
-        
+            setTimeout(() => {
+                modalOuter.style.visibility = "hidden";
+                document.querySelector(".modal-inner").innerHTML = ``;
+                document.querySelector(".modal-options").innerHTML = ``;
+            }, 500);
+            
+        } else {
+            modalOuter.style.visibility = "visible";
+            loadSettings();
+            modalOuter.classList.add("open");
+            bodyInner.classList.add("fade");
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000');
+        }
     } else {
-        modalOuter.style.visibility = "visible";
-        loadSettings();
-        modalOuter.classList.add("open");
-        bodyInner.classList.add("fade");
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000');
+        if (modalOuter.classList.contains("open")) {
+            bodyInner.classList.remove("fade");
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
+            modalOuter.classList.remove("open");
+    
+            setTimeout(() => {
+                modalOuter.style.visibility = "hidden";
+                document.querySelector(".modal-inner").innerHTML = ``;
+                document.querySelector(".modal-options").innerHTML = ``;
+            }, 500);
+            
+        } else {
+            modalOuter.style.visibility = "visible";
+            loadSettings();
+            modalOuter.classList.add("open");
+            bodyInner.classList.add("fade");
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000');
+        }
     }
 }
 
@@ -439,13 +459,18 @@ function setUnit(unit, target) {
         document.querySelector(`#unit-${unit ? 'mi' : 'km'}`).classList.add("enabled");
         document.querySelector(`#unit-${unit ? 'km' : 'mi'}`).classList.remove("enabled");
     } else if (target == 3) {
-        if (unit == 2) {
-            document.querySelector(`#theme-mono`).classList.add("enabled");
-            document.querySelector(`#theme-${unit ? 'dark' : 'light'}`).classList.remove("enabled");
-        } else {
-            document.querySelector(`#theme-${unit ? 'dark' : 'light'}`).classList.add("enabled");
-            document.querySelector(`#theme-${unit ? 'light' : 'dark'}`).classList.remove("enabled");
-            document.querySelector(`#theme-mono`).classList.remove("enabled");
+        if (unit === 0) {
+            document.querySelector('#theme-light').classList.add("enabled");
+            document.querySelector('#theme-dark').classList.remove("enabled");
+            document.querySelector('#theme-mono').classList.remove("enabled");
+        } else if (unit === 1) {
+            document.querySelector('#theme-dark').classList.add("enabled");
+            document.querySelector('#theme-light').classList.remove("enabled");
+            document.querySelector('#theme-mono').classList.remove("enabled");
+        } else if (unit === 2) {
+            document.querySelector('#theme-mono').classList.add("enabled");
+            document.querySelector('#theme-light').classList.remove("enabled");
+            document.querySelector('#theme-dark').classList.remove("enabled");
         }
     }
 }
@@ -458,6 +483,9 @@ function applySettings() {
     // save
 
     localStorage.setItem("w-settings", JSON.stringify(currentSettings));
+    setTimeout(() => {
+        toggleSettings(1);
+    }, 100);
     setTimeout(() => {
         location.reload();
     }, 200);
