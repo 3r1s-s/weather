@@ -1,2 +1,2 @@
 # weather
- Eris Weather app
+A very cool weather app
