@@ -1,2 +1,2 @@
 # weather
-A very cool weather app
+A fun & colourful weather PWA
