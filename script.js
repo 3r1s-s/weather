@@ -97,7 +97,7 @@ async function getWeather(station) {
         document.getElementById("heatIndex").querySelector(".tile-value").innerHTML = `<span class="str"><span>${convertTemperature(heatIndex, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature)}</span><span class="symbol small">°</span></span>`;
         document.getElementById("dewpoint").querySelector(".tile-value").innerHTML = `<span class="str"><span>${convertTemperature(dewpoint, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature)}</span><span class="symbol small">°</span></span>`;
         document.getElementById("relativeHumidity").querySelector(".tile-value").innerText = Math.round(relativeHumidity) + '%';
-        document.getElementById("precipitationLast6Hours").querySelector(".tile-value").innerHTML = `<span class='str'><span>${Math.round(precipitationLast6Hours)}</span><span class='symbol small'>"</span></span>`;
+        document.getElementById("precipitationLast6Hours").querySelector(".tile-value").innerHTML = `<span class='str'><span>${convertLength(precipitationLast6Hours, 0, JSON.parse(localStorage.getItem("weather-settings")).measure)}</span><span class='symbol small'>${JSON.parse(localStorage.getItem("weather-settings")).measure === 1 ? '"' : ''}</span></span>`;
 
         const latitude = data.features[0].geometry.coordinates[1];
         const longitude = data.features[0].geometry.coordinates[0];
@@ -161,6 +161,7 @@ async function getWeather(station) {
         document.getElementById("dewpoint").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).temperature === 1 ? 'F°' : 'C°'}`;
         document.getElementById("windSpeed").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).measure === 1 ? 'mph' : 'km/h'}`;
         document.getElementById("visibility").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).measure === 1 ? 'mi' : 'km'}`;
+        document.getElementById("precipitationLast6Hours").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).measure === 1 ? 'in' : 'cm'}`;
     } catch (error) {
         console.error('Error fetching temperature:', error);
     }
@@ -188,6 +189,7 @@ function placeholders(station) {
     document.getElementById("visibility").querySelector(".tile-value").innerText = '--';
     document.getElementById("heatIndex").querySelector(".tile-value").innerHTML = `<span class="str">--</span>`;
     document.getElementById("dewpoint").querySelector(".tile-value").innerHTML = `<span class="str">--</span>`;
+    document.getElementById("precipitationLast6Hours").querySelector(".tile-value").innerHTML = `<span class="str">--</span>`;
     document.getElementById("relativeHumidity").querySelector(".tile-value").innerText = '--';
     document.getElementById("precipitationLast6Hours").querySelector(".tile-value").innerHTML = `--`;
 }
@@ -266,6 +268,17 @@ function convertDistance(val, from, to) {
         return Math.round(val * 1.60934);
     } else if (from === 0 && to === 1) {
         return Math.round(val / 1.60934);
+    } else {
+        return Math.round(val);
+    }
+}
+
+function convertLength(val, from, to) {
+    // 1 = in, 0 = cm
+    if (from === 1 && to === 0) {
+        return Math.round(val * 2.54);
+    } else if (from === 0 && to === 1) {
+        return Math.round(val / 2.54);
     } else {
         return Math.round(val);
     }
@@ -426,8 +439,8 @@ function loadSettings() {
     </div>
     <span class="modal-subheader">Measurement System</span>
     <div class="unit-toggle" id='unit-measure'>
-    <div class="unit-toggle-button" id="unit-km" data-unit="0" onclick="setUnit(0, 2)">Kilometers</div>
-    <div class="unit-toggle-button enabled" id="unit-mi" data-unit="1" onclick="setUnit(1, 2)">Miles</div>
+    <div class="unit-toggle-button" id="unit-km" data-unit="0" onclick="setUnit(0, 2)">Metric</div>
+    <div class="unit-toggle-button enabled" id="unit-mi" data-unit="1" onclick="setUnit(1, 2)">American</div>
     </div>
     <span class="modal-subheader">App Theme</span>
     <div class="unit-toggle" id='unit-theme'>
