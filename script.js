@@ -1,16 +1,16 @@
-if (!localStorage.getItem("w-settings")) {
+if (!localStorage.getItem("weather-settings")) {
     const settings = {
         "temperature": 0, // 1 = F, 0 = C
         "measure": 0, // 1 = miles, 0 = km;
         "theme": 0, // 1 = dark, 0 = light;
     };
     
-    localStorage.setItem("w-settings", JSON.stringify(settings));
+    localStorage.setItem("weather-settings", JSON.stringify(settings));
 }
 
-if (localStorage.getItem("w-settings").theme === 1) {
+if (localStorage.getItem("weather-settings").theme === 1) {
     document.body.classList.add("dark");
-} else if (localStorage.getItem("w-settings").theme === 2) {
+} else if (localStorage.getItem("weather-settings").theme === 2) {
     document.body.classList.add("mono");
 }
 
@@ -67,9 +67,9 @@ async function getWeather(station) {
             }
         }
 
-        if (JSON.parse(localStorage.getItem("w-settings")).theme === 1) {
+        if (JSON.parse(localStorage.getItem("weather-settings")).theme === 1) {
             document.body.classList.add("dark");
-        } else if (JSON.parse(localStorage.getItem("w-settings")).theme === 2) {
+        } else if (JSON.parse(localStorage.getItem("weather-settings")).theme === 2) {
             document.body.classList.add("mono");
         }
 
@@ -85,17 +85,17 @@ async function getWeather(station) {
         const relativeHumidity = data.features[1].properties.relativeHumidity.value;
         const precipitationLast6Hours = data.features[1].properties.precipitationLast6Hours.value;
         
-        document.getElementById("temperature").innerText = convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("w-settings")).temperature);
+        document.getElementById("temperature").innerText = convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature);
         document.getElementById("loc").innerText = st;
         document.getElementById("location-full").innerText = name;
         document.getElementById("description").innerText = desc;
 
         document.getElementById("barometricPressure").querySelector(".tile-value").innerText = Math.round(barometricPressure * 0.0002953);
-        document.getElementById("windSpeed").querySelector(".tile-value").innerText = convertDistance(windSpeed, 0, JSON.parse(localStorage.getItem("w-settings")).measure);
+        document.getElementById("windSpeed").querySelector(".tile-value").innerText = convertDistance(windSpeed, 0, JSON.parse(localStorage.getItem("weather-settings")).measure);
         document.getElementById("windSpeed").querySelector(".compass").style.transform = `rotate(${windDirection}deg)`;
-        document.getElementById("visibility").querySelector(".tile-value").innerText = convertDistance(visibility / 1000, 0, JSON.parse(localStorage.getItem("w-settings")).measure);
-        document.getElementById("heatIndex").querySelector(".tile-value").innerHTML = `<span class="str"><span>${convertTemperature(heatIndex, 0, JSON.parse(localStorage.getItem("w-settings")).temperature)}</span><span class="symbol small">°</span></span>`;
-        document.getElementById("dewpoint").querySelector(".tile-value").innerHTML = `<span class="str"><span>${convertTemperature(dewpoint, 0, JSON.parse(localStorage.getItem("w-settings")).temperature)}</span><span class="symbol small">°</span></span>`;
+        document.getElementById("visibility").querySelector(".tile-value").innerText = convertDistance(visibility / 1000, 0, JSON.parse(localStorage.getItem("weather-settings")).measure);
+        document.getElementById("heatIndex").querySelector(".tile-value").innerHTML = `<span class="str"><span>${convertTemperature(heatIndex, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature)}</span><span class="symbol small">°</span></span>`;
+        document.getElementById("dewpoint").querySelector(".tile-value").innerHTML = `<span class="str"><span>${convertTemperature(dewpoint, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature)}</span><span class="symbol small">°</span></span>`;
         document.getElementById("relativeHumidity").querySelector(".tile-value").innerText = Math.round(relativeHumidity) + '%';
         document.getElementById("precipitationLast6Hours").querySelector(".tile-value").innerHTML = `<span class='str'><span>${Math.round(precipitationLast6Hours)}</span><span class='symbol small'>"</span></span>`;
 
@@ -115,13 +115,13 @@ async function getWeather(station) {
         const highTemp = convertTemperature(
             Math.max(...periods.map(period => period.temperature)),
             1,
-            JSON.parse(localStorage.getItem("w-settings")).temperature
+            JSON.parse(localStorage.getItem("weather-settings")).temperature
         );
         
         const lowTemp = convertTemperature(
             Math.min(...periods.map(period => period.temperature)),
             1,
-            JSON.parse(localStorage.getItem("w-settings")).temperature
+            JSON.parse(localStorage.getItem("weather-settings")).temperature
         );
         
         document.getElementById("high-temp").innerText = `${highTemp}°`;
@@ -145,7 +145,7 @@ async function getWeather(station) {
         
                 const forecastDiv = document.createElement('div');
                 forecastDiv.innerHTML = `
-                    <span class="forcast-temp">${convertTemperature(period.temperature, 1, JSON.parse(localStorage.getItem("w-settings")).temperature)}<span class="symbol">°</span></span>
+                    <span class="forcast-temp">${convertTemperature(period.temperature, 1, JSON.parse(localStorage.getItem("weather-settings")).temperature)}<span class="symbol">°</span></span>
                     <span class="forcast-time">${formattedHour}${ampm}</span>
                 `;
                 forecastContainer.appendChild(forecastDiv);
@@ -157,19 +157,19 @@ async function getWeather(station) {
 
         document.getElementById("chanceOfRain").querySelector(".tile-value").innerText = maxChanceOfRain + '%';
 
-        document.getElementById("heatIndex").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("w-settings")).temperature === 1 ? 'F°' : 'C°'}`;
-        document.getElementById("dewpoint").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("w-settings")).temperature === 1 ? 'F°' : 'C°'}`;
-        document.getElementById("windSpeed").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("w-settings")).measure === 1 ? 'mph' : 'km/h'}`;
-        document.getElementById("visibility").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("w-settings")).measure === 1 ? 'mi' : 'km'}`;
+        document.getElementById("heatIndex").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).temperature === 1 ? 'F°' : 'C°'}`;
+        document.getElementById("dewpoint").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).temperature === 1 ? 'F°' : 'C°'}`;
+        document.getElementById("windSpeed").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).measure === 1 ? 'mph' : 'km/h'}`;
+        document.getElementById("visibility").querySelector(".tile-unit").innerText = `${JSON.parse(localStorage.getItem("weather-settings")).measure === 1 ? 'mi' : 'km'}`;
     } catch (error) {
         console.error('Error fetching temperature:', error);
     }
 }
 
 function placeholders(station) {
-    if (JSON.parse(localStorage.getItem("w-settings")).theme === 1) {
+    if (JSON.parse(localStorage.getItem("weather-settings")).theme === 1) {
         document.body.classList.add("dark");
-    } else if (JSON.parse(localStorage.getItem("w-settings")).theme === 2) {
+    } else if (JSON.parse(localStorage.getItem("weather-settings")).theme === 2) {
         document.body.classList.add("mono");
     }
 
@@ -284,12 +284,15 @@ async function searchStations(query) {
         const results = document.createElement('div');
         results.className = 'results';
 
-        results.innerHTML = `
-            <span class="saved-loc-name">
-                Results for "${query}"
+        results.innerHTML = 
+            `<span class="saved-loc-name">
+                <span>Results for "${query}"</span>
+                </span>
+                <span class="result-left" onclick="clearSearch()">
+                <span class="loading"></span>
+                <span class="pointer">Back</span>
             </span>
-            <span class="loading"></span>
-        `;
+            `;
 
         document.querySelector('.sidebar-main').appendChild(results);
         try {
@@ -304,6 +307,8 @@ async function searchStations(query) {
                 const stations = stationsData.features;
 
                 if (stations.length > 0) {
+                    const pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
+
                     for (let i = 0; i < Math.min(stations.length, 10); i++) {
                         const station = stations[i];
                         const stationId = station.properties.stationIdentifier;
@@ -311,7 +316,7 @@ async function searchStations(query) {
                         try {
                             const observationResponse = await fetch(`https://api.weather.gov/stations/${stationId}/observations/`);
                             const data = await observationResponse.json();
-                            let temperature
+                            let temperature;
                             if (data.features[0].properties.temperature.value) {
                                 temperature = data.features[0].properties.temperature.value;
                             } else {
@@ -327,14 +332,17 @@ async function searchStations(query) {
                             savedLocDiv.id = stationId;
                             savedLocDiv.onclick = () => getWeather(stationId);
 
-                            savedLocDiv.innerHTML = `
-                                <span class="saved-loc-name">
+                            savedLocDiv.innerHTML = 
+                                `<span class="saved-loc-name">
                                     ${stationId} - ${name}
                                 </span>
                                 <div class="saved-loc-title">
-                                    <span id="loc-temp">${temperature ? convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("w-settings")).temperature) : 'N/A'}°</span>
+                                    <span id="loc-temp">${temperature ? convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature) : 'N/A'}°</span>
                                 </div>
-                            `;
+                                <div class="pin-button" onclick="pinLocation('${stationId}')">
+                                <span>Pin</span>
+                                </div>
+                                `;
 
                             document.querySelector('.sidebar-main').appendChild(savedLocDiv);
                         } catch (error) {
@@ -432,19 +440,19 @@ function loadSettings() {
     <button class="modal-button" onclick="applySettings()">Apply</button>
     <button class="modal-button" onclick="toggleSettings()">Close</button>
     `;
-    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("w-settings")).temperature ? 'f' : 'c'}`).classList.add("enabled");
-    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("w-settings")).temperature ? 'c' : 'f'}`).classList.remove("enabled");
-    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("w-settings")).measure ? 'mi' : 'km'}`).classList.add("enabled");
-    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("w-settings")).measure ? 'km' : 'mi'}`).classList.remove("enabled");
-    if (JSON.parse(localStorage.getItem("w-settings")).theme === 0) {
+    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("weather-settings")).temperature ? 'f' : 'c'}`).classList.add("enabled");
+    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("weather-settings")).temperature ? 'c' : 'f'}`).classList.remove("enabled");
+    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("weather-settings")).measure ? 'mi' : 'km'}`).classList.add("enabled");
+    document.querySelector(`#unit-${JSON.parse(localStorage.getItem("weather-settings")).measure ? 'km' : 'mi'}`).classList.remove("enabled");
+    if (JSON.parse(localStorage.getItem("weather-settings")).theme === 0) {
         document.querySelector('#theme-light').classList.add("enabled");
         document.querySelector('#theme-dark').classList.remove("enabled");
         document.querySelector('#theme-mono').classList.remove("enabled");
-    } else if (JSON.parse(localStorage.getItem("w-settings")).theme === 1) {
+    } else if (JSON.parse(localStorage.getItem("weather-settings")).theme === 1) {
         document.querySelector('#theme-dark').classList.add("enabled");
         document.querySelector('#theme-light').classList.remove("enabled");
         document.querySelector('#theme-mono').classList.remove("enabled");
-    } else if (JSON.parse(localStorage.getItem("w-settings")).theme === 2) {
+    } else if (JSON.parse(localStorage.getItem("weather-settings")).theme === 2) {
         document.querySelector('#theme-mono').classList.add("enabled");
         document.querySelector('#theme-light').classList.remove("enabled");
         document.querySelector('#theme-dark').classList.remove("enabled");
@@ -476,13 +484,13 @@ function setUnit(unit, target) {
 }
 
 function applySettings() {
-    const currentSettings = JSON.parse(localStorage.getItem("w-settings"));
+    const currentSettings = JSON.parse(localStorage.getItem("weather-settings"));
     currentSettings.temperature = parseInt(document.querySelector("#unit-temperature .unit-toggle-button.enabled").getAttribute("data-unit"));
     currentSettings.measure = parseInt(document.querySelector("#unit-measure .unit-toggle-button.enabled").getAttribute("data-unit"));
     currentSettings.theme = parseInt(document.querySelector("#unit-theme .unit-toggle-button.enabled").getAttribute("data-unit"));
     // save
 
-    localStorage.setItem("w-settings", JSON.stringify(currentSettings));
+    localStorage.setItem("weather-settings", JSON.stringify(currentSettings));
     setTimeout(() => {
         toggleSettings(1);
     }, 100);
@@ -491,6 +499,80 @@ function applySettings() {
     }, 200);
 }
 
+function clearSearch() {
+    document.querySelector('.sidebar-main').innerHTML = '';
+    displayPinnedLocations();
+}
+
+function displayPinnedLocations() {
+    const pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
+    document.querySelector('.sidebar-main').innerHTML = '';
+
+    if (pinnedLocations.length > 0) {
+        pinnedLocations.forEach(async (stationId) => {
+            try {
+                const observationResponse = await fetch(`https://api.weather.gov/stations/${stationId}/observations/`);
+                const data = await observationResponse.json();
+                let temperature;
+                if (data.features[0].properties.temperature.value) {
+                    temperature = data.features[0].properties.temperature.value;
+                } else {
+                    temperature = data.features[1].properties.temperature.value;
+                }
+
+                const stationResp = await fetch(`https://api.weather.gov/stations/${stationId}`);
+                const stationData = await stationResp.json();
+                const name = stationData.properties.name;
+
+                const savedLocDiv = document.createElement('div');
+                savedLocDiv.className = 'saved-loc';
+                savedLocDiv.id = stationId;
+                savedLocDiv.onclick = () => getWeather(stationId);
+                savedLocDiv.innerHTML = 
+                    `<span class="saved-loc-name">
+                        ${stationId} - ${name}
+                    </span>
+                    <div class="saved-loc-title">
+                        <span id="loc-temp">${temperature ? convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature) : 'N/A'}°</span>
+                    </div>
+                    <div class="pin-button" onclick="removePinnedLocation('${stationId}')">
+                        <span>Unpin</span>
+                    </div>
+                `;
+                document.querySelector('.sidebar-main').appendChild(savedLocDiv);
+            } catch (error) {
+                console.error('Error fetching pinned location data:', error);
+            }
+        });
+    } else {
+        document.querySelector('.sidebar-main').innerHTML = '<span class="saved-loc-name">No pinned locations</span>';
+    }
+}
+
+function pinLocation(stationId) {
+    const pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
+    if (!pinnedLocations.includes(stationId)) {
+        pinnedLocations.push(stationId);
+        localStorage.setItem("weather-pinneds", JSON.stringify(pinnedLocations));
+        displayPinnedLocations();
+    }
+}
+
+function removePinnedLocation(stationId) {
+    let pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
+    pinnedLocations = pinnedLocations.filter(id => id !== stationId);
+    localStorage.setItem("weather-pinneds", JSON.stringify(pinnedLocations));
+    displayPinnedLocations();
+}
+
 setMoon();
 
-getWeather('KPHX');
+window.onload = function() {
+    displayPinnedLocations();
+    const pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
+    if (pinnedLocations.length > 0) {
+        getWeather(pinnedLocations[0]);
+    } else {
+        getWeather('KPHX');
+    }
+};

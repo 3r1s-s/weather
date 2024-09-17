@@ -473,6 +473,7 @@ body {
     justify-content: center;
     overflow: hidden;
     gap: 2px;
+    position: relative;
 }
 
 .saved-loc-name {
@@ -544,6 +545,19 @@ body {
     justify-content: space-between;
     align-items: center;
     min-height: 25px;
+}
+
+.result-left {
+    display: flex;
+    gap: 10px;
+    color: #fff;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.pointer:hover {
+    cursor: pointer;
 }
 
 .loading {
@@ -666,6 +680,15 @@ body {
     background-color: var(--settings-text);
     color: var(--settings-400);
     font-weight: 600;
+}
+
+.pin-button {
+    color: var(--back-text);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 15px 18px;
+    background: transparent;
 }
 
 @media screen and (max-width: 720px) {
