@@ -7,10 +7,10 @@ body {
     overflow: hidden;
     user-select: none;
     -webkit-user-select: none;
-    padding-top: env(safe-area-inset-top);
 }
 
 .body-inner {
+    padding-top: env(safe-area-inset-top);
     background-color: var(--back);
     display: flex;
     justify-content: space-between;
