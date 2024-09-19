@@ -76,7 +76,7 @@ async function getWeather(station) {
         }
 
         const meta = document.querySelector('meta[name="theme-color"]');
-        // meta.setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
+        meta.setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
 
         const barometricPressure = data.features[0].properties.barometricPressure.value;
         const windSpeed = data.features[0].properties.windSpeed.value;
@@ -397,7 +397,7 @@ function toggleSettings(override) {
     if (override === 0 || override === 0) {
         if (override === 1) {
             bodyInner.classList.remove("fade");
-            // document.querySelector('meta[name="theme-color"]').setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
             modalOuter.classList.remove("open");
     
             setTimeout(() => {
@@ -411,12 +411,12 @@ function toggleSettings(override) {
             loadSettings();
             modalOuter.classList.add("open");
             bodyInner.classList.add("fade");
-            // document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000');
         }
     } else {
         if (modalOuter.classList.contains("open")) {
             bodyInner.classList.remove("fade");
-            // document.querySelector('meta[name="theme-color"]').setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', getComputedStyle(document.body).getPropertyValue('--back'));
             modalOuter.classList.remove("open");
     
             setTimeout(() => {
@@ -430,7 +430,7 @@ function toggleSettings(override) {
             loadSettings();
             modalOuter.classList.add("open");
             bodyInner.classList.add("fade");
-            // document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000');
         }
     }
 }
