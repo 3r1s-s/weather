@@ -703,14 +703,15 @@ body {
 
 @media screen and (max-width: 720px) {
     body {
-        
+
         width: 100%;
-        height: 100%;
+        height: 100vh;
         padding-top: env(safe-area-inset-top);
         overflow: visible;
     }
 
     .body-inner {
+        padding-top: env(safe-area-inset-top);
         transition: transform 0.5s cubic-bezier(.2,0,0,1), 
         opacity 0.5s cubic-bezier(.2,0,0,1),
         border-radius 0.5s cubic-bezier(.2,0,0,1);
