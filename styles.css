@@ -13,6 +13,7 @@ body {
 
 .body-inner {
     padding-top: env(safe-area-inset-top);
+    padding-top: 25px;
     background-color: var(--back);
     display: flex;
     justify-content: space-between;
