@@ -703,20 +703,28 @@ body {
 
 @media screen and (max-width: 720px) {
     body {
-
-    }
-
-    .body-inner {
-
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        
+    }
+
+    .body-inner {
         transition: transform 0.5s cubic-bezier(.2,0,0,1), 
         opacity 0.5s cubic-bezier(.2,0,0,1),
         border-radius 0.5s cubic-bezier(.2,0,0,1);
+    }
+
+    .body-inner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--back);
+        z-index: 0;
     }
 
     .fade {
