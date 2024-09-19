@@ -349,7 +349,7 @@ async function searchStations(query) {
 
                             savedLocDiv.innerHTML = 
                                 `
-                                <div class="result-wrapper" onclick="getWeather(${stationId})">
+                                <div class="result-wrapper" onclick="getWeather('${stationId}')">
                                     <span class="saved-loc-name">
                                         ${stationId} - ${name}
                                     </span>
@@ -548,7 +548,7 @@ function displayPinnedLocations() {
                 savedLocDiv.id = stationId;
                 savedLocDiv.innerHTML = 
                 `
-                <div class="result-wrapper" onclick="getWeather(${stationId})">
+                <div class="result-wrapper" onclick="getWeather('${stationId}')">
                     <span class="saved-loc-name">
                         ${stationId} - ${name}
                     </span>
