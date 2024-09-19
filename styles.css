@@ -77,7 +77,8 @@ body {
     justify-content: center;
     align-items: center;
     background-color: var(--blue-500);
-    transition: background 0.2s cubic-bezier(.2,0,0,1)
+    transition: background 0.2s cubic-bezier(.2,0,0,1);
+    filter: drop-shadow(0 2px 0 #00000025);
 }
 
 .sidebar-inner {
