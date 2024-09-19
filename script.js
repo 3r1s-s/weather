@@ -14,6 +14,8 @@ if (localStorage.getItem("weather-settings").theme === 1) {
     document.body.classList.add("mono");
 }
 
+let searching;
+
 async function getWeather(station) {
     placeholders(station);
     if (document.querySelector(".sidebar.open")) {
@@ -307,6 +309,7 @@ async function searchStations(query) {
             </span>
             `;
 
+        searching = true;
         document.querySelector('.sidebar-main').appendChild(results);
         try {
             const locationResponse = await fetch(`https://nominatim.openstreetmap.org/search?q=${query}&format=json`);
@@ -322,7 +325,7 @@ async function searchStations(query) {
                 if (stations.length > 0) {
                     const pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
 
-                    for (let i = 0; i < Math.min(stations.length, 10); i++) {
+                    for (let i = 0; i < Math.min(stations.length, 10) && searching; i++) {
                         const station = stations[i];
                         const stationId = station.properties.stationIdentifier;
 
@@ -343,18 +346,20 @@ async function searchStations(query) {
                             const savedLocDiv = document.createElement('div');
                             savedLocDiv.className = 'saved-loc';
                             savedLocDiv.id = stationId;
-                            savedLocDiv.onclick = () => getWeather(stationId);
 
                             savedLocDiv.innerHTML = 
-                                `<span class="saved-loc-name">
-                                    ${stationId} - ${name}
-                                </span>
-                                <div class="saved-loc-title">
-                                    <span id="loc-temp">${temperature ? convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature) : 'N/A'}°</span>
+                                `
+                                <div class="result-wrapper" onclick="getWeather(${stationId})">
+                                    <span class="saved-loc-name">
+                                        ${stationId} - ${name}
+                                    </span>
+                                    <div class="saved-loc-title">
+                                        <span id="loc-temp">${temperature ? convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature) : 'N/A'}°</span>
+                                    </div>
                                 </div>
-                                <div class="pin-button" onclick="pinLocation('${stationId}')">
-                                <span>Pin</span>
-                                </div>
+                                    <div class="pin-button" onclick="pinLocation('${stationId}')">
+                                    <span>Pin</span>
+                                    </div>
                                 `;
 
                             document.querySelector('.sidebar-main').appendChild(savedLocDiv);
@@ -376,6 +381,7 @@ async function searchStations(query) {
         console.log('No location entered');
     }
 }
+
 
 function toggleSidebar() {
     if (document.querySelector(".sidebar.open")) {
@@ -514,7 +520,7 @@ function applySettings() {
 
 function clearSearch() {
     document.querySelector('.sidebar-main').innerHTML = '';
-    displayPinnedLocations();
+    searching = false;
 }
 
 function displayPinnedLocations() {
@@ -540,16 +546,18 @@ function displayPinnedLocations() {
                 const savedLocDiv = document.createElement('div');
                 savedLocDiv.className = 'saved-loc';
                 savedLocDiv.id = stationId;
-                savedLocDiv.onclick = () => getWeather(stationId);
                 savedLocDiv.innerHTML = 
-                    `<span class="saved-loc-name">
+                `
+                <div class="result-wrapper" onclick="getWeather(${stationId})">
+                    <span class="saved-loc-name">
                         ${stationId} - ${name}
                     </span>
                     <div class="saved-loc-title">
                         <span id="loc-temp">${temperature ? convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature) : 'N/A'}°</span>
                     </div>
-                    <div class="pin-button" onclick="removePinnedLocation('${stationId}')">
-                        <span>Unpin</span>
+                </div>
+                    <div class="pin-button" onclick="unpinLocation('${stationId}')">
+                    <span>Unpin</span>
                     </div>
                 `;
                 document.querySelector('.sidebar-main').appendChild(savedLocDiv);
@@ -563,6 +571,8 @@ function displayPinnedLocations() {
 }
 
 function pinLocation(stationId) {
+    clearSearch();
+    event.stopPropagation();
     const pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
     if (!pinnedLocations.includes(stationId)) {
         pinnedLocations.push(stationId);
@@ -571,7 +581,7 @@ function pinLocation(stationId) {
     }
 }
 
-function removePinnedLocation(stationId) {
+function unpinLocation(stationId) {
     let pinnedLocations = JSON.parse(localStorage.getItem("weather-pinneds")) || [];
     pinnedLocations = pinnedLocations.filter(id => id !== stationId);
     localStorage.setItem("weather-pinneds", JSON.stringify(pinnedLocations));
