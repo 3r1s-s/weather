@@ -703,16 +703,30 @@ body {
 
 @media screen and (max-width: 720px) {
     body {
-
+        position: static;
+        
+        nargin: 0;
+        padding: 0;
         width: 100%;
         height: 100vh;
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        background: transparent;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
         padding-top: env(safe-area-inset-top);
-        overflow: visible;
     }
 
     .body-inner {
-        height: 100vh;
-        padding-top: env(safe-area-inset-top);
+        position: fixed;
+        height: 100%;
+        width: 100%;
         transition: transform 0.5s cubic-bezier(.2,0,0,1), 
         opacity 0.5s cubic-bezier(.2,0,0,1),
         border-radius 0.5s cubic-bezier(.2,0,0,1);
@@ -726,6 +740,11 @@ body {
         height: 100%;
         top: 0;
         left: 0;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        pointer-events: none;
         transform: scaleY(-2) scaleX(2);
         background-color: var(--back);
     }
