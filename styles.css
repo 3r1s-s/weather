@@ -711,6 +711,7 @@ body {
     }
 
     .body-inner {
+        height: 100vh;
         padding-top: env(safe-area-inset-top);
         transition: transform 0.5s cubic-bezier(.2,0,0,1), 
         opacity 0.5s cubic-bezier(.2,0,0,1),
