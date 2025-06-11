@@ -361,8 +361,9 @@ async function searchStations(query) {
                                     <span>Pin</span>
                                     </div>
                                 `;
-
-                            document.querySelector('.sidebar-main').appendChild(savedLocDiv);
+                            if (searching) {
+                                document.querySelector('.sidebar-main').appendChild(savedLocDiv);
+                            }
                         } catch (error) {
                             console.error('Error fetching temperature data:', error);
                         }
@@ -407,6 +408,7 @@ function toggleSettings(override) {
             }, 500);
             
         } else {
+            haptic();
             modalOuter.style.visibility = "visible";
             loadSettings();
             modalOuter.classList.add("open");

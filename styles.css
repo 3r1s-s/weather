@@ -1,3 +1,53 @@
+:root {
+    --app-text: #e8e1f2;
+    --app-link: #a899ff;
+    --app-100: #020102;
+    --app-200: #070609;
+    --app-300: #0e0d13;
+    --app-400: #14121b;
+    --app-500: #1a1825;
+    --app-600: #221e2e;
+    --app-700: #2b2738;
+    --app-800: #343043;
+    --app-900: #3e3b50;
+    
+    --app-accent: #8a7dd5;
+
+    --titlebar: rgba(14, 13, 19, 0.8);
+
+    --app-blue: #3679f0;
+    --app-red: #ee4d3c;
+    --app-green: #4dca9a;
+    --app-yellow: #fffc5c;
+    --app-pink: #ff5bff;
+    --app-purple: #895bff;
+    --app-orange: #ff9b5b;
+
+    --app-dark-blue: #1e4d9e;
+    --app-dark-red: #c33f33;
+    --app-dark-green: #2c7e4b;
+    --app-dark-yellow: #c7b200;
+    --app-dark-pink: #c95bff;
+    --app-dark-purple: #5f5bff;
+    --app-dark-orange: #c86f33;
+
+    --modal-text: var(--app-text);
+    --modal-link: var(--app-link);
+    --modal-accent: var(--app-blue);
+    --modal-100: var(--app-100);
+    --modal-200: var(--app-200);
+    --modal-300: var(--app-300);
+    --modal-400: var(--app-400);
+    --modal-500: var(--app-500);
+    --modal-600: var(--app-600);
+    --modal-700: var(--app-700);
+    --modal-800: var(--app-800);
+    --modal-900: var(--app-900);
+
+    --brand-purple: #6955AD;
+    --brand-purple-dark: #2B2347;
+}
+
 body {
     margin: 0;
     font-family: "GG Sans", sans-serif;
@@ -86,7 +136,7 @@ body {
 .sidebar-inner {
     padding: 0 15px;
     margin-top: 80px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -593,63 +643,78 @@ body {
     height: 100%;
     background: transparent;
     transition: background 0.2s cubic-bezier(.2,0,0,1);
+
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .modal-outer.open {
+    background-color: rgba(11, 10, 14, 0.8);
     visibility: visible;
-    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal {
     width: 70%;
     max-width: 700px;
-    height: 85%;
+    height: 60%;
+    min-height: 600px;
     align-self: center;
-    background: var(--settings-400);
-    color: var(--settings-text);
+    background: var(--modal-400);
+    border: 3px solid var(--modal-600);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    color: var(--modal-text);
     border-radius: 40px;
-    padding: 25px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-
     transform: scale(0.8);
     opacity: 0;
     transition: transform cubic-bezier(0,-.25,0,1.5) 0.2s, opacity cubic-bezier(0,-.25,0,1) 0.2s;
 }
 
 .modal-outer.open .modal {
-    transform: scale(1);
+    transform: translateY(0);
     opacity: 1;
 }
 
 .modal-options {
     display: flex;
-    align-self: end;
+    justify-content: end;
     gap: 8px;
+    padding: 20px;
 }
 
 .modal-inner {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    height: 100%;
     position: relative;
     gap: 10px;
+    overflow: auto;
+    margin-bottom: auto;
+    padding: 20px;
+
+    scrollbar-width: none;
 }
 
 .modal-header {
     font-size: 2em;
-    font-weight: 600;
-    border-bottom: 3px solid var(--settings-600);
-    position: sticky;
-    top: 0;
-    left: 0;
+    font-weight: 700;
+    text-wrap: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    background: transparent;
+    border-bottom: 3px solid var(--modal-600);
     width: 100%;
+    min-height: 1lh;
+    gap: 8px;
+    display: flex;
+    align-items: baseline;
 }
 
 .modal-button {
-    background: var(--settings-600);
-    color: var(--settings-text);
+    background: var(--modal-600);
+    color: var(--modal-text);
     border-radius: 100px;
     border: none;
     min-width: 100px;
@@ -662,13 +727,54 @@ body {
 }
 
 .modal-button:active {
-    background-color: var(--settings-500);
+    background-color: var(--modal-500);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: calc(50% - 16px);
+    width: 32px;
+    height: 4px;
+    background: var(--modal-800);
+    border-radius: 100px;
+}
+
+.modal-section {
+    display: flex;
+    flex-direction: column;
+    background: var(--modal-300);
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+    max-height: 85px;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.modal hr {
+    border: none;
+    height: 3px;
+    background: var(--modal-800);
+    border-radius: 100px;
+}
+
+.modal-subheader {
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 .unit-toggle {
     display: flex;
     flex-wrap: nowrap;
-    border: 2px solid var(--settings-text);
+    /* border: 2px solid var(--settings-text); */
+    border: 2px solid var(--modal-600);
     border-radius: 15px;
     overflow: hidden;
 }
@@ -679,16 +785,22 @@ body {
     justify-content: center;
     align-items: center;
     padding: 10px;
+
+    transition: background 0.2s cubic-bezier(.2,0,0,1), color 0.2s cubic-bezier(.2,0,0,1), font-weight 0.2s cubic-bezier(.2,0,0,1);
 }
 
 .unit-toggle-button:not(:first-child):not(:last-child) {
-    border-left: 2px solid var(--settings-text);
-    border-right: 2px solid var(--settings-text);
+    /* border-left: 2px solid var(--settings-text);
+    border-right: 2px solid var(--settings-text); */
+    border-left: 2px solid var(--modal-600);
+    border-right: 2px solid var(--modal-600);
 }
 
 .unit-toggle-button.enabled {
-    background-color: var(--settings-text);
-    color: var(--settings-400);
+    /* background-color: var(--settings-text); */
+    background-color: var(--modal-600);
+    /* color: var(--settings-400); */
+    color: var(--modal-text);
     font-weight: 600;
 }
 
@@ -755,7 +867,6 @@ body {
     }
 
     .location {
-        background-color: var(--back);
         position: fixed;
         display: flex;
         justify-content: center;
@@ -765,6 +876,21 @@ body {
         width: 100%;
         height: 50px;
         top: 0;
+
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .location::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--back);
+        opacity: 0.8;
+        z-index: -1;
     }
 
     .hero {
@@ -782,7 +908,7 @@ body {
         border-radius: 0;
         border-top-left-radius: 40px;
         border-top-right-radius: 40px;
-        padding: 25px 20px;
+        /* padding: 25px 20px; */
         padding-bottom: 50px;
         opacity: 1;
     
