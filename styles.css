@@ -922,6 +922,11 @@ body {
     .modal-outer.open > .modal {
         transform: translateY(0);
     }
+
+    .footer {
+        padding: 8px;
+        box-sizing: border-box;
+    }
 }
 
 /* Animations */
