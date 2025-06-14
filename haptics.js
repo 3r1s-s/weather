@@ -21,5 +21,7 @@ function webkitHaptic() {
 
 function haptic(x) {
     webkitHaptic();
-    navigator.vibrate(x || 50);
+    if (/Android/i.test(navigator.userAgent)) {
+        navigator.vibrate(x || 50);
+    }
 }
