@@ -867,6 +867,7 @@ body {
     }
 
     .location {
+        background-color: var(--back);
         position: fixed;
         display: flex;
         justify-content: center;
@@ -880,7 +881,7 @@ body {
         /* backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px); */
     }
-
+/* 
     .location::before {
         content: '';
         position: absolute;
@@ -891,7 +892,7 @@ body {
         background-color: var(--back);
         opacity: 1;
         z-index: -1;
-    }
+    } */
 
     .hero {
         margin-top: 55px;

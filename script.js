@@ -408,7 +408,6 @@ function toggleSettings(override) {
             }, 500);
             
         } else {
-            haptic();
             modalOuter.style.visibility = "visible";
             loadSettings();
             modalOuter.classList.add("open");
@@ -478,6 +477,7 @@ function loadSettings() {
         document.querySelector('#theme-light').classList.remove("enabled");
         document.querySelector('#theme-dark').classList.remove("enabled");
     }
+    haptic();
 }
 function setUnit(unit, target) {
     // 1 = temp, 2 = measure
