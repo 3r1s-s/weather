@@ -912,6 +912,8 @@ body {
         /* padding: 25px 20px; */
         padding-bottom: 50px;
         opacity: 1;
+
+        border: none;
     
         transform: translateY(100%);
         transition: transform cubic-bezier(0.68, 0.1, 0.27, 1) 0.4s;

@@ -20,9 +20,6 @@ function webkitHaptic() {
 }
 
 function haptic(x) {
-    if (device.supports.haptics) {
-        navigator.vibrate(x || 50);
-    } else if (device.is.iPhone) {
-        webkitHaptic();
-    }
+    webkitHaptic();
+    navigator.vibrate(x || 50);
 }
