@@ -85,7 +85,7 @@ async function getWeather(station) {
         const heatIndex = data.features[1].properties.heatIndex.value;
         const dewpoint = data.features[1].properties.dewpoint.value;
         const relativeHumidity = data.features[1].properties.relativeHumidity.value;
-        const precipitationLast6Hours = data.features[1].properties.precipitationLast6Hours.value;
+        const precipitationLast6Hours = data?.features[1]?.properties?.precipitationLast6Hours?.value;
         
         document.getElementById("temperature").innerText = convertTemperature(temperature, 0, JSON.parse(localStorage.getItem("weather-settings")).temperature);
         document.getElementById("loc").innerText = st;
